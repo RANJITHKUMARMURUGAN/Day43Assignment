@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic input form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form>
+        <header class="headerContainer"><h1>HTML 5 For Input Field</h1></header>
+        <div>
+            <label for="text">First Name:</label>
+            <input type="text" id="text" name="text"  required>
+            <error-output class="text-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for="pwd">password input type:</label>
+            <input for="password" id="pwd" name="pwd" required>
+            <error-output class="text-pass" for="pwd"></error-output>
+        </div>
+        <div>
+            <label for="emd">email input type:</label>
+            <input for="email" id="emd" name="emd">
+            <error-output class="text-email" for="emd"></error-output>
+        </div>
+        <div>
+            <label for="url">url input type:</label>
+            <input for="url" id="url" name="url">
+        </div>
+        <div>
+            <label for="number">Mobile Number:</label>
+            <input for="num" id="number" name="number">
+            <error-output class="text-number" for="number"></error-output>
+        </div>
+        <div>
+            <label for="tel">tel input type:</label>
+            <input type="tel" id="tel" name="tel">
+        </div>
+        <div>
+            <label for="search">search input type:</label>
+            <input type="search" id="search" name="search">
+        </div>
+        <div>
+            <label for="salary">choose your salary:</label>
+            <input type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000">
+            <output class="salary-output" for="salary">400000</output>
+        </div>
+        <div>
+            <button>submit</button>
+        </div>
+    </form>
+    <script>
+        const text = document.querySelector('#text');
+        const textError = document.querySelector('.text-error');
+        text.addEventListener('input',function(){
+             let nameRange = RegExp('^[A-Z]{1}[a-z]{2}$');
+             if(nameRange.test(text.value))
+                 textError.textContent = " ";
+             else textError.textContent = "Name is Incorrect";   
+        });
+
+        const salary = document.querySelector('#salary');
+        const output = document.querySelector('.salary-output');
+        output.textContent = salary.value;
+        salary.addEventListener('input',function(){
+            output.textContent = salary.value;
+        });
+
+        const pwd = document.querySelector('#pwd');
+        const textpass = document.querySelector('.text-pass');
+        pwd.addEventListener('input',function(){
+        let passwordRange = RegExp('^[A-Za-z1-9@$%&#]{8,15}$');
+        if(passwordRange.test(pwd.value))
+        textpass.textContent = "";
+        else textpass.textContent = "the paswword is Incorrect";
+        });
+
+
+        const email_part = document.querySelector('#emd');
+        const mailmsg = document.querySelector('.text-email');
+        email_part.addEventListener('input',function(){
+        // let emailRange = RegExp('^[a-z]{3}[.][xyz]{3}[@][a-z]{2}[.][a-z]{2}[a-z]{2}$');
+        let emailRange = RegExp('^[a-zA-Z]{3}[.][a-z]{3}+[@][a-z]{4,10}[.][a-z]{2}[.][a-z]{2}$');
+        if(emailRange.test(email_part.value))
+        mailmsg.textContent = "";
+        else mailmsg.textContent = "the email is Incorrect";
+        });
+
+
+        const number = document.querySelector('#number');
+        const textnumber = document.querySelector('.text-number');
+        number.addEventListener('input',function(){
+        let numberRange = RegExp('^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$');
+        if(numberRange.test(number.value))
+        textnumber.textContent = "";
+        else textnumber.textContent = "the mobile number is Incorrect";
+        });
+    </script> 
+    
+</body>
+</html>
